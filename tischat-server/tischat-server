@@ -1,0 +1,7 @@
+#!/bin/sh
+java -jar meta/jruby.jar library/main.rb $*
+
+# Simply launch java,
+# tell it to execute the jruby jar,
+# tell that to compile and run the ruby main file,
+# and pass along any other arguments.

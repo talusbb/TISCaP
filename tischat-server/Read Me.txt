@@ -1,0 +1,118 @@
+encoding: utf-8
+
+
+
+
+    ┏─────────────────────────────────────────────┓
+    ┃                                             ┃
+    ┃     Tischat Server                          ┃
+    ┃                                             ┃
+    ┠─────────────────────────────────────────────┨
+    ┃ talking over the TISCaP protocol.           ┃
+    ┃ (tischat-server is simplicated chat server) ┃
+    ┃ For any platform running Java.              ┃
+    ┗─────────────────────────────────────────────┛
+                             by Talus Baddley
+                                December 2013.
+
+
+
+
+
+
+
+
+
+⎛             ⎞
+⎜ Quick Start ⎟
+⎝             ⎠
+
+
+FIRST, Go to jruby.org and download the
+complete JRuby jar! Place it in the meta directory,
+and call it “jruby.jar”. Then...
+
+Change to this directory, and do
+    ./tischat-server
+
+Wait for the “Server up” message.
+Use ^c any time to exit.
+
+
+
+
+
+
+⎛                ⎞
+⎜ File Structure ⎟
+⎝                ⎠
+
+
+tischat-server
+    This simple bash script starts Java, launching the JRuby jar,
+    with the ruby server as its application.
+
+
+
+meta folder
+    
+    jruby.jar
+        The JRuby compiler, libraries and runtime.
+
+
+
+library folder
+    Contains all the source code.
+    I won't go into too much detail here, as the code
+    is heavily self-documented. But for best effect,
+    consider reading the files in this order:
+    
+    main.rb
+        The main file which bootstraps the whole operation
+    
+    ClientAcceptor.rb
+        Listens on a socket for incoming connections,
+        and dispatches the connections to ClientHandlers.
+    
+    ClientHandler.rb
+        Communicates with one client on its own run loops.
+    
+    MessageDispatch.rb
+        The hub of all communications, and the home
+        of the chat circle dictionary.
+    
+    Transmission.rb
+        Packages and abstracts the concept of a TISCaP Transmission,
+        as defined in the protocol specs.
+    
+    Plus these helpers:
+    Concurrent.rb
+    errors.rb
+    io+readto.rb
+    jimports.rb
+    string+insensitivity.rb
+    
+    
+
+
+
+
+
+
+
+
+⎛                        ⎞
+⎜ Necessary Improvements ⎟
+⎝                        ⎠
+
+    
+There is virtually no protection against malicious clients
+consuming resources or conducting a land-grab of usernames.
+That needs to be fixed before this is used in any serious context,
+but, unfortunately, I'm out of time to do so.
+
+It should also allow you to start the server on an arbitrary
+port, via the command line.
+
+
+

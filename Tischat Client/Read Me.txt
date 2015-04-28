@@ -1,0 +1,158 @@
+encoding: utf-8
+
+
+
+
+    ┏─────────────────────────────────────────────┓
+    ┃                                             ┃
+    ┃     Tischat Client                          ┃
+    ┃                                             ┃
+    ┠─────────────────────────────────────────────┨
+    ┃ talking over the TISCaP protocol.           ┃
+    ┃ (TischatClient is simplicated chat client)  ┃
+    ┃ For Mac OS 10.8 or later.                   ┃
+    ┗─────────────────────────────────────────────┛
+                             by Talus Baddley
+                                December 2013.
+
+
+
+
+
+
+
+
+
+⎛             ⎞
+⎜ Quick Start ⎟
+⎝             ⎠
+
+
+Launch the Tischat Client.app alias inside the Tischat Client folder.
+
+If this has come unlinked in the shuffle, launch it from
+    DerivedData/Tischat Client/Build/Products/Debug/
+    
+Enter a server address and username, and click Log In.
+
+The main pane of the main window is the public messaging arena.
+Write a message and press return to publish it.
+
+The sidebar lists the logged-in users. Select one and hit the “Chat”
+button to begin a private conversation with them. If they begin one
+with you first, a window with their message will pop up.
+
+
+
+
+
+
+⎛                ⎞
+⎜ File Structure ⎟
+⎝                ⎠
+
+
+Tischat Client.xcodeproj
+    is the Cocoa Xcode project for this client.
+    You can browse the source from within Xcode, which provides responsive
+    highlighting and more structure than the directories do.
+    
+    If you want to build from this project, you'll need to tell Xcode
+    not to try and code sign using my certificate.
+    
+    Within the Xcode project:
+    
+    Library
+        Supporting data structures for the mechanics of the protocol.
+        
+        TiscapTransmission (.h/.m)
+            The direct correlary to TiscapTransmission in the server.
+        
+        MessageDispatch (.h/.m)
+            Coördinates all interactions with the server.
+        
+        ActiveUser (.h/.m)
+            Represents a logged-in user in the chat circle.
+        
+        MessageList (.h/.m)
+            A model/controller holding a list of messages to display.
+    
+    
+    Application
+        The controllers for the application logic.
+        
+        PrivateConversation (.h/.m/.xib)
+            An NSDocument subclass displaying a private conversation.
+            The nib contains the interface for the private conversations.
+        
+        AppController (.h/.m/.xib)
+            Coördinates all application-level business,
+            including login and the main window.
+        
+        MainMenu.xib
+            This nib contains the interface for the main window and menubar.
+            It instantiates the AppController.
+    
+    
+    3rd Party Awesomeness
+        See the references in the respective header files.
+        
+        GCDAsyncSocket (.h/.m)
+            Public Domain; Created by Robbie Hanson, among others.
+            Fills in all the missing objectivity for Cocoa sockets.
+            TCP-specific, powered by Grand Central Dispatch.
+            
+            Only slightly harder to use than Java or Ruby sockets,
+            but provides much, much more customizability and hooks,
+            and takes care of all the crabby details.
+        
+        MiddleAlignedTextFieldCell (.h/.m)
+            Provides a text field cell (for table views)
+            where the text is aligned to the middle.
+            
+            Given as an answer on StackOverflow.
+    
+    
+    Images.xcassets
+        I really have no idea what this is doing here.
+    
+    
+    Supporting Files
+        Irrelevant to this project.
+    
+    
+
+
+Tischat Client folder
+    Contains all the above source files,
+    just not arranged in any particular way.
+
+
+
+
+Alias to Tischat Client.app
+    The built, ready-to-run application.
+    (Linked for Mac OS X 10.8 and later.)
+
+
+
+DerivedData folder
+    Contains build information.
+
+
+
+
+
+
+
+
+⎛                        ⎞
+⎜ Necessary Improvements ⎟
+⎝                        ⎠
+
+    
+The interface is not very polished. It allows for some illegal operations,
+though they're not too serious.
+
+
+
